@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplikasi kasir dan keranjang belanja sederhana untuk kantin atau toko kampus.">
+  <title>Mini POS — Kasir Kampus</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">M</div>
+    <div>
+      <p class="eyebrow">KASIR KAMPUS</p>
+      <h1>Mini POS</h1>
+    </div>
+    <span class="status"><span class="status-dot"></span> Siap digunakan</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">POINT OF SALE / PRAKTIKUM WEB</p>
+        <h2>Transaksi jadi lebih <span>praktis.</span></h2>
+        <p class="intro-copy">Kelola barang, hitung diskon, dan cek kembalian dalam satu halaman.</p>
+      </div>
+      <div class="intro-icon" aria-hidden="true">▤</div>
+    </section>
+
+    <section class="stats-grid" aria-label="Ringkasan transaksi">
+      <article class="stat-card">
+        <p>Item di keranjang</p>
+        <strong id="item-count">0 <small>item</small></strong>
+      </article>
+      <article class="stat-card">
+        <p>Total belanja</p>
+        <strong id="stat-total">Rp0</strong>
+      </article>
+      <article class="stat-card">
+        <p>Potongan diskon</p>
+        <strong class="discount-text" id="stat-discount">Rp0</strong>
+      </article>
+    </section>
+
+    <div class="main-grid">
+      <section class="panel form-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LANGKAH 01</p>
+            <h3>Tambah barang</h3>
+          </div>
+          <span class="heading-icon">＋</span>
+        </div>
+        <p class="muted">Masukkan detail barang yang dibeli.</p>
+
+        <form id="product-form" novalidate>
+          <div class="field">
+            <label for="product-name">Nama barang</label>
+            <input id="product-name" name="productName" type="text" placeholder="Contoh: Roti cokelat" autocomplete="off">
+            <small class="error" id="name-error"></small>
+          </div>
+          <div class="field">
+            <label for="product-price">Harga satuan (Rp)</label>
+            <div class="input-prefix"><span>Rp</span><input id="product-price" name="productPrice" type="number" min="500" step="1" placeholder="5000"></div>
+            <small class="error" id="price-error"></small>
+          </div>
+          <div class="field">
+            <label for="product-qty">Jumlah / Qty</label>
+            <input id="product-qty" name="productQty" type="number" min="1" step="1" value="1" placeholder="1">
+            <small class="error" id="qty-error"></small>
+          </div>
+          <button class="btn btn-primary btn-full" type="submit">＋ Tambahkan ke keranjang</button>
+          <p class="form-note">Harga minimal Rp500 · Nama minimal 3 karakter</p>
+        </form>
+      </section>
+
+      <section class="panel cart-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LANGKAH 02</p>
+            <h3>Keranjang belanja</h3>
+          </div>
+          <span class="cart-count" id="cart-badge">0 barang</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>No</th><th>Nama barang</th><th>Harga satuan</th><th>Qty</th><th>Subtotal</th><th>Aksi</th></tr>
+            </thead>
+            <tbody id="cart-body">
+              <tr class="empty-row"><td colspan="6"><span class="empty-icon">▧</span><strong>Keranjang masih kosong</strong><small>Barang yang kamu tambahkan akan muncul di sini.</small></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cart-footer">
+          <span><span class="save-dot"></span> Keranjang tersimpan otomatis di browser</span>
+          <button type="button" id="clear-cart" class="btn btn-quiet">Kosongkan keranjang</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="bottom-grid">
+      <section class="panel summary-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">LANGKAH 03</p><h3>Ringkasan pembayaran</h3></div>
+          <span class="heading-icon">▤</span>
+        </div>
+        <div class="summary-line"><span>Subtotal belanja</span><strong id="subtotal">Rp0</strong></div>
+        <div class="summary-line"><span>Diskon <span class="discount-pill" id="discount-label">Belum aktif</span></span><strong class="discount-text" id="discount">− Rp0</strong></div>
+        <div class="promo-note" id="promo-note">Belanja minimal Rp50.000 untuk mendapatkan diskon 10%.</div>
+        <div class="summary-total"><span>Total akhir</span><strong id="grand-total">Rp0</strong></div>
+      </section>
+
+      <section class="panel payment-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">LANGKAH 04</p><h3>Pembayaran</h3></div>
+          <span class="heading-icon">↗</span>
+        </div>
+        <div class="field">
+          <label for="cash-paid">Uang bayar (Rp)</label>
+          <div class="input-prefix"><span>Rp</span><input id="cash-paid" type="number" min="0" step="1" placeholder="Masukkan uang dari pembeli"></div>
+          <small class="muted">Kembalian dihitung otomatis saat nominal diisi.</small>
+        </div>
+        <div class="change-box" id="change-box" aria-live="polite">
+          <span class="change-icon">↔</span>
+          <div><small>Status pembayaran</small><strong id="change-status">Menunggu pembayaran</strong><p id="change-detail">Masukkan nominal uang bayar.</p></div>
+        </div>
+        <button class="btn btn-primary btn-full" type="button" id="new-transaction">✓ Transaksi baru / selesai</button>
+        <p class="form-note">Tombol ini mengosongkan keranjang dan uang bayar.</p>
+      </section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <footer><span>Mini POS</span> · Praktikum Pemrograman Web <span class="footer-right">Dibuat untuk simulasi kasir kampus</span></footer>
+</body>
+</html>
