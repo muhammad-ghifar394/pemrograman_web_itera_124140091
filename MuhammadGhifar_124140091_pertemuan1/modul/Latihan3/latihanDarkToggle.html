@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dark Mode</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Website Sederhana</h2>
+    <p>Klik tombol untuk mengganti tema halaman.</p>
+
+    <button id="tombolTema">Aktifkan Dark Mode</button>
+
+    <script>
+        const tombol = document.getElementById("tombolTema");
+
+        tombol.addEventListener("click", function() {
+            document.body.classList.toggle("dark");
+
+            if (document.body.classList.contains("dark")) {
+                tombol.textContent = "Aktifkan Light Mode";
+            } else {
+                tombol.textContent = "Aktifkan Dark Mode";
+            }
+        });
+    </script>
+</body>
+</html>
