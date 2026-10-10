@@ -32,13 +32,24 @@ Mini POS adalah aplikasi web kasir sederhana untuk simulasi transaksi kantin ata
 - [x] Layout responsif untuk desktop dan layar ponsel.
 
 ## Screenshot aplikasi
-Simpan setidaknya tiga tangkapan layar buatanmu sendiri ke folder `screenshots/` dengan nama berikut:
-1. `01-form-utama.png` — halaman utama dan form input barang.
-2. `02-validasi-error.png` — tampilkan pesan error dengan mengirim form kosong atau harga di bawah Rp500.
-3. `03-keranjang-pembayaran.png` — keranjang terisi dan ringkasan pembayaran. Untuk memperlihatkan diskon, masukkan barang dengan total subtotal minimal Rp50.000.
 
-**Cara mengambil screenshot:** buka aplikasi melalui Live Server, atur tampilan browser agar seluruh bagian yang diperlukan terlihat, lalu gunakan `Win + Shift + S`. Simpan hasilnya dengan nama di atas pada folder `screenshots/`. Pastikan screenshot benar-benar berasal dari aplikasi yang dijalankan sebelum dikumpulkan.
+### 1. Tampilan Form Input Barang
 
+Menampilkan halaman utama aplikasi Mini POS dengan form input nama barang, harga satuan, dan jumlah barang.
+
+![Form Input Barang](screenshots/01-form-utama.png)
+
+### 2. Tampilan Validasi Error
+
+Menampilkan pesan kesalahan ketika pengguna memasukkan data yang tidak valid.
+
+![Validasi Error](screenshots/02-validasi-error.png)
+
+### 3. Tampilan Keranjang dan Pembayaran
+
+Menampilkan tabel keranjang belanja, subtotal, diskon, total akhir, uang bayar, dan kembalian.
+
+![Keranjang dan Pembayaran](screenshots/03-keranjang-pembayaran.png)
 ## Penjelasan teknis singkat
 ### Validasi input
 Saat form dikirim, event `submit` dicegah agar halaman tidak reload. Fungsi `validateProduct()` memeriksa nama barang, harga, dan qty. Jika ada input tidak valid, pesan ditampilkan di bawah input terkait dan fungsi berhenti sehingga barang tidak ditambahkan. Jika valid, barang masuk ke array `cart`, kemudian form di-reset.
@@ -57,7 +68,6 @@ muhammadghifar_124140091_pertemuan1/
 ├── script.js
 ├── README.md
 ├── screenshots/
-│   └── (tambahkan 3 screenshot aplikasi)
 └── modul/
     └── README.md
 ```
