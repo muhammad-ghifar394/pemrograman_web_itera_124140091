@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .selesai {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        button {
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Todo List</h2>
+
+    <form id="formTodo">
+        <input
+            type="text"
+            id="inputTodo"
+            placeholder="Masukkan tugas..."
+            required
+        >
+        <button type="submit">Tambah</button>
+    </form>
+
+    <ul id="daftarTodo"></ul>
+
+    <script>
+        const form = document.getElementById("formTodo");
+        const input = document.getElementById("inputTodo");
+        const daftar = document.getElementById("daftarTodo");
+
+        let todos = JSON.parse(
+            localStorage.getItem("todos")
+        ) || [];
+
+        function simpanTodo() {
+            localStorage.setItem(
+                "todos",
+                JSON.stringify(todos)
+            );
+        }
+
+        function tampilkanTodo() {
+            daftar.replaceChildren();
+
+            todos.forEach(todo => {
+                const item = document.createElement("li");
+
+                const teks = document.createElement("span");
+                teks.textContent = todo.nama;
+
+                if (todo.selesai) {
+                    teks.classList.add("selesai");
+                }
+
+                const tombolSelesai =
+                    document.createElement("button");
+
+                tombolSelesai.textContent =
+                    todo.selesai ? "Batal selesai" : "Selesai";
+
+                tombolSelesai.addEventListener("click", function() {
+                    todo.selesai = !todo.selesai;
+                    simpanTodo();
+                    tampilkanTodo();
+                });
+
+                const tombolHapus =
+                    document.createElement("button");
+
+                tombolHapus.textContent = "Hapus";
+
+                tombolHapus.addEventListener("click", function() {
+                    todos = todos.filter(
+                        t => t.id !== todo.id
+                    );
+
+                    simpanTodo();
+                    tampilkanTodo();
+                });
+
+                item.append(teks, tombolSelesai, tombolHapus);
+                daftar.appendChild(item);
+            });
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const namaTodo = input.value.trim();
+
+            if (!namaTodo) {
+                return;
+            }
+
+            todos.push({
+                id: Date.now(),
+                nama: namaTodo,
+                selesai: false
+            });
+
+            simpanTodo();
+            tampilkanTodo();
+            form.reset();
+            input.focus();
+        });
+
+        tampilkanTodo();
+    </script>
+</body>
+</html>

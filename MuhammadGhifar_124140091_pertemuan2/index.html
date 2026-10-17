@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Dashboard mahasiswa untuk mengelola tugas dan produktivitas.">
+  <title>MonoDesk — Personal Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="MonoDesk beranda">
+        <span class="brand-mark">M</span><span>MonoDesk<span class="brand-dot">.</span></span>
+      </a>
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#tasks"><span class="nav-icon">☷</span> Daftar tugas</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-profile"><div class="avatar">M</div><div><strong>My Workspace</strong><small>Personal space</small></div></div>
+        <p class="sidebar-note">Ruang sederhana untuk fokus pada hal yang penting.</p>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div><p class="eyebrow">PERSONAL WORKSPACE</p><h1>Dashboard</h1></div>
+        <div class="date-chip"><span class="status-dot"></span><span id="today-date">Memuat tanggal…</span></div>
+      </header>
+
+      <section class="welcome-row">
+        <div><p class="eyebrow">SELAMAT DATANG KEMBALI</p><h2>Halo, mahasiswa. <span class="wave">✳</span></h2><p class="muted">Atur prioritasmu, selesaikan satu hal pada satu waktu.</p></div>
+        <div class="focus-badge"><span class="focus-icon">✦</span><div><strong>Keep it focused.</strong><small>Small steps, real progress.</small></div></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Ringkasan tugas">
+        <article class="stat-card"><div class="stat-top"><span>Total tugas</span><span class="stat-symbol">▤</span></div><strong id="total-count" class="stat-number">0</strong><small>Semua tugas yang dicatat</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Belum selesai</span><span class="stat-symbol">◷</span></div><strong id="pending-count" class="stat-number">0</strong><small>Masih perlu dikerjakan</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Selesai</span><span class="stat-symbol">✓</span></div><strong id="done-count" class="stat-number">0</strong><small>Progress yang sudah dicapai</small></article>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel tasks-panel" id="tasks">
+          <div class="panel-heading"><div><p class="eyebrow">STAY ORGANIZED</p><h2>Daftar tugas</h2></div><button id="add-task-button" class="button button-dark"><span>＋</span> Tambah tugas</button></div>
+          <div class="toolbar">
+            <label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Cari tugas..." aria-label="Cari tugas"></label>
+            <select id="filter-select" aria-label="Filter tugas"><option value="all">Semua status</option><option value="pending">Belum selesai</option><option value="done">Selesai</option></select>
+          </div>
+          <div id="task-list" class="task-list" aria-live="polite"></div>
+          <div id="empty-state" class="empty-state hidden"><div class="empty-icon">☷</div><strong>Belum ada tugas di sini</strong><p>Tambahkan tugas pertamamu dan mulai atur prioritas.</p><button class="button button-outline" id="empty-add-button">＋ Buat tugas</button></div>
+          <div class="panel-footer"><span id="task-summary">0 tugas</span><span>Disimpan otomatis di perangkat ini</span></div>
+        </section>
+
+        <aside class="right-column">
+          <section class="panel quote-panel"><div class="panel-heading"><div><p class="eyebrow">DAILY REMINDER</p><h2>Catatan hari ini</h2></div><span class="quote-mark">“</span></div><p id="quote-text" class="quote-text">Fokus pada progres, bukan kesempurnaan.</p><p id="quote-author" class="quote-author">— MonoDesk</p><button id="new-quote-button" class="text-button">Kutipan baru <span>↗</span></button><p id="quote-status" class="tiny-status" aria-live="polite"></p></section>
+          <section class="panel progress-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR MOMENTUM</p><h2>Progress tugas</h2></div><span class="progress-icon">◉</span></div><div class="progress-number"><strong id="progress-percent">0%</strong><span>terselesaikan</span></div><div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div><p id="progress-caption" class="muted small">Setiap tugas selesai adalah langkah maju.</p></section>
+          <section class="tip-card"><span class="tip-icon">✧</span><div><strong>Tip produktivitas</strong><p>Mulai dari tugas kecil yang paling jelas langkah pertamanya.</p></div></section>
+        </aside>
+      </section>
+      <footer class="page-footer"><span>MonoDesk © <span id="year"></span></span><span>Designed for focus <span class="footer-star">✳</span></span></footer>
+    </main>
+  </div>
+
+  <dialog id="task-dialog" class="task-dialog">
+    <form id="task-form">
+      <div class="dialog-heading"><div><p class="eyebrow">TASK DETAILS</p><h2 id="dialog-title">Tambah tugas</h2></div><button type="button" id="close-dialog" class="icon-button" aria-label="Tutup dialog">×</button></div>
+      <label class="field-label" for="task-title">Nama tugas <span>*</span></label>
+      <input id="task-title" name="title" maxlength="100" required placeholder="Contoh: Kerjakan laporan praktikum">
+      <label class="field-label" for="task-course">Mata kuliah / kategori</label>
+      <input id="task-course" name="course" maxlength="60" placeholder="Contoh: Jaringan Komputer">
+      <label class="field-label" for="task-due">Tenggat waktu</label>
+      <input id="task-due" name="dueDate" type="date">
+      <label class="field-label" for="task-priority">Prioritas</label>
+      <select id="task-priority" name="priority"><option value="normal">Normal</option><option value="high">Tinggi</option><option value="low">Rendah</option></select>
+      <div class="dialog-actions"><button type="button" id="cancel-dialog" class="button button-outline">Batal</button><button type="submit" class="button button-dark">Simpan tugas</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
