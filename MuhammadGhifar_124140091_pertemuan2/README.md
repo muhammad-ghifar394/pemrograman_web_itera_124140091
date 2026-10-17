@@ -56,11 +56,8 @@ Key localStorage yang digunakan adalah `monodesk.tasks.v1`. Data tersimpan pada 
 
 ## Screenshot aplikasi
 
-
-```markdown
-## Screenshot
 ![Tampilan MonoDesk](screenshots/app-ui.png)
-```
+
 
 ## Teknologi
 
