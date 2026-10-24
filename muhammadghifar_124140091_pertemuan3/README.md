@@ -150,8 +150,6 @@ Halaman ini menampilkan daftar buku, informasi jumlah buku, fitur pencarian, fil
 
 Halaman statistik menampilkan ringkasan koleksi, jumlah penulis berbeda, distribusi status buku, dan daftar buku yang terakhir ditambahkan.
 
-> Catatan: Ganti gambar contoh di atas dengan screenshot asli aplikasi. Simpan screenshot di folder `docs/screenshots/` dengan nama file yang sesuai.
-
 ## 7. Penjelasan Konsep React yang Digunakan
 
 ### a. Functional Components
@@ -227,8 +225,6 @@ Kemudian tampilkan bukti tersebut di bawah ini:
 
 ![Screenshot hasil unit test](docs/screenshots/test-result-1.png)
 ![Screenshot hasil unit test](docs/screenshots/test-result-2.png)
-
-**Catatan:** Screenshot harus berasal dari hasil pengujian yang benar-benar dijalankan. Jangan mengisi hasil pengujian dengan angka atau status yang belum diverifikasi.
 
 ## 9. Kesimpulan
 
