@@ -1,0 +1,2 @@
+/* Komponen menggunakan token dan layout form dari src/styles.css. */
+.form-group input[aria-invalid="true"]{border-color:#d85d70}

@@ -1,70 +1,237 @@
-# Getting Started with Create React App
+# Aplikasi Manajemen Buku Pribadi
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 1. Deskripsi Aplikasi
 
-## Available Scripts
+Aplikasi Manajemen Buku Pribadi merupakan aplikasi berbasis web yang dibuat menggunakan React untuk membantu pengguna mencatat dan mengelola koleksi buku pribadi.
 
-In the project directory, you can run:
+Pengguna dapat menambahkan buku, mengedit informasi buku, menghapus buku, mencari buku berdasarkan judul atau nama penulis, serta memfilter buku berdasarkan statusnya.
 
-### `npm start`
+Data buku disimpan menggunakan `localStorage`, sehingga data tetap tersedia ketika halaman dimuat ulang selama data browser tidak dihapus.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 2. Teknologi yang Digunakan
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React** untuk membangun antarmuka aplikasi.
+- **JavaScript** untuk logika aplikasi.
+- **CSS** untuk mengatur tampilan aplikasi.
+- **React Router** untuk navigasi antarhalaman.
+- **React Context API** untuk membagikan data buku ke beberapa komponen.
+- **React Hooks** untuk mengelola state dan efek pada komponen.
+- **localStorage** untuk menyimpan data buku di browser.
+- **React Testing Library** untuk membantu pengujian komponen.
 
-### `npm test`
+## 3. Fitur Aplikasi
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Aplikasi ini memiliki beberapa fitur utama:
 
-### `npm run build`
+1. **Tambah Buku**  
+   Menambahkan buku baru dengan informasi judul, penulis, status, tahun terbit, genre, dan catatan.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Edit Buku**  
+   Mengubah informasi buku yang sudah tersimpan.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Hapus Buku**  
+   Menghapus buku dari koleksi dengan konfirmasi sebelum penghapusan.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Pencarian Buku**  
+   Mencari buku berdasarkan judul atau nama penulis.
 
-### `npm run eject`
+5. **Filter Status Buku**  
+   Menampilkan buku berdasarkan status:
+   - Milik saya
+   - Sedang dibaca
+   - Ingin dibeli
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. **Pengurutan Buku**  
+   Mengurutkan buku berdasarkan waktu penambahan, judul, atau nama penulis.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. **Statistik Buku**  
+   Menampilkan jumlah buku, jumlah penulis berbeda, distribusi status buku, dan daftar buku terbaru.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+8. **Penyimpanan Data**  
+   Menyimpan data secara lokal menggunakan `localStorage`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+9. **Validasi Formulir**  
+   Memastikan judul dan penulis diisi serta tahun terbit menggunakan format yang valid jika dicantumkan.
 
-## Learn More
+## 4. Struktur Folder
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Struktur folder utama di dalam `src` adalah sebagai berikut:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```text
+src/
+├── components/
+│   ├── BookForm/
+│   │   ├── BookForm.jsx
+│   │   └── BookForm.css
+│   ├── BookList/
+│   │   ├── BookList.jsx
+│   │   └── BookList.css
+│   └── BookFilter/
+│       ├── BookFilter.jsx
+│       └── BookFilter.css
+├── pages/
+│   ├── Home/
+│   │   ├── Home.jsx
+│   │   └── Home.css
+│   └── Stats/
+│       ├── Stats.jsx
+│       └── Stats.css
+├── hooks/
+│   ├── useLocalStorage.js
+│   └── useBookStats.js
+├── context/
+│   └── BookContext.jsx
+├── App.jsx
+├── index.js
+└── styles.css
+```
 
-### Code Splitting
+## 5. Instalasi dan Cara Menjalankan Aplikasi
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Persyaratan
 
-### Analyzing the Bundle Size
+Pastikan Node.js dan npm sudah terpasang pada komputer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Langkah Instalasi
 
-### Making a Progressive Web App
+1. Buka folder proyek menggunakan Visual Studio Code.
+2. Buka terminal pada folder utama proyek.
+3. Jalankan perintah berikut untuk memasang dependency:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```bash
+   npm install
+   ```
 
-### Advanced Configuration
+4. Jalankan aplikasi menggunakan perintah:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   ```bash
+   npm start
+   ```
 
-### Deployment
+5. Buka browser dan akses alamat berikut:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   ```text
+   http://localhost:3000
+   ```
 
-### `npm run build` fails to minify
+### Menjalankan Unit Test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Untuk menjalankan pengujian, gunakan perintah:
+
+```bash
+npm test
+```
+
+Create React App akan menjalankan test dalam mode interaktif. Tekan `a` pada terminal jika ingin menjalankan seluruh test yang tersedia.
+
+### Membuat Build Aplikasi
+
+Untuk membuat versi produksi, jalankan:
+
+```bash
+npm run build
+```
+
+Hasil build akan disimpan dalam folder `build`.
+
+## 6. Screenshot Antarmuka Aplikasi
+
+Tambahkan screenshot aplikasi yang sudah dijalankan pada bagian ini.
+
+### Halaman Koleksi Buku
+
+![Screenshot halaman koleksi buku](docs/screenshots/app-ui.png)
+
+Halaman ini menampilkan daftar buku, informasi jumlah buku, fitur pencarian, filter status, serta tombol untuk menambah, mengedit, dan menghapus buku.
+
+### Halaman Statistik
+
+![Screenshot halaman statistik](docs/screenshots/halaman-statistik.png)
+
+Halaman statistik menampilkan ringkasan koleksi, jumlah penulis berbeda, distribusi status buku, dan daftar buku yang terakhir ditambahkan.
+
+> Catatan: Ganti gambar contoh di atas dengan screenshot asli aplikasi. Simpan screenshot di folder `docs/screenshots/` dengan nama file yang sesuai.
+
+## 7. Penjelasan Konsep React yang Digunakan
+
+### a. Functional Components
+
+Komponen aplikasi dibuat menggunakan function JavaScript, seperti `BookForm`, `BookList`, `BookFilter`, `Home`, dan `Stats`. Setiap komponen memiliki tanggung jawab tertentu agar kode lebih mudah dipahami dan dikelola.
+
+### b. useState
+
+`useState` digunakan untuk menyimpan dan mengubah state, seperti data formulir, kata pencarian, filter status, serta kondisi tampil atau tidaknya formulir.
+
+### c. useEffect
+
+`useEffect` digunakan pada custom hook `useLocalStorage` untuk menyimpan perubahan data ke browser. Hook ini juga digunakan pada formulir untuk mengatur nilai awal ketika data buku yang diedit berubah.
+
+### d. Props
+
+Props digunakan untuk mengirim data dan fungsi dari komponen induk ke komponen anak. Contohnya, `BookList` menerima daftar buku dan fungsi untuk mengedit atau menghapus buku.
+
+### e. Context API
+
+`BookContext` digunakan untuk membagikan data buku dan fungsi pengelolaannya ke komponen yang membutuhkan, sehingga data tidak perlu diteruskan melalui banyak tingkat props.
+
+### f. Custom Hooks
+
+Aplikasi memiliki dua custom hooks:
+
+- `useLocalStorage` untuk mengelola state yang disimpan di browser.
+- `useBookStats` untuk menghitung statistik buku berdasarkan data koleksi.
+
+### g. React Router
+
+React Router digunakan untuk mengatur navigasi antara halaman Koleksi Buku dan Statistik Buku tanpa perlu membuat halaman HTML terpisah.
+
+### h. Conditional Rendering
+
+Conditional rendering digunakan untuk menampilkan pesan ketika daftar buku kosong, menampilkan formulir hanya ketika diperlukan, serta menampilkan pesan kesalahan saat input tidak valid.
+
+### i. Rendering Daftar dengan map()
+
+Method `map()` digunakan untuk menampilkan kumpulan buku dalam bentuk kartu. Setiap kartu menggunakan `id` sebagai key agar React dapat mengidentifikasi elemen daftar.
+
+### j. useMemo
+
+`useMemo` digunakan untuk membantu menghitung statistik dan memproses daftar buku yang sudah dicari, difilter, atau diurutkan ketika data atau kriteria berubah.
+
+## 8. Pengujian Aplikasi
+
+Pengujian dilakukan menggunakan Jest yang tersedia melalui Create React App dan React Testing Library.
+
+Pengujian komponen formulir mencakup:
+
+1. Memastikan judul dan penulis wajib diisi.
+2. Memastikan data dikirim ketika input valid.
+3. Memastikan tahun terbit yang tidak valid ditolak.
+4. Memastikan formulir memuat data awal ketika mengedit buku.
+5. Memastikan tombol batal memanggil fungsi pembatalan.
+
+### Bukti Eksekusi Unit Test
+
+Jalankan perintah berikut pada terminal:
+
+```bash
+npm test
+```
+
+Ambil screenshot terminal yang menunjukkan hasil pengujian. Simpan gambar tersebut sebagai:
+
+```text
+docs/screenshots/hasil-unit-test.png
+```
+
+Kemudian tampilkan bukti tersebut di bawah ini:
+
+![Screenshot hasil unit test](docs/screenshots/test-result-1.png)
+![Screenshot hasil unit test](docs/screenshots/test-result-2.png)
+
+**Catatan:** Screenshot harus berasal dari hasil pengujian yang benar-benar dijalankan. Jangan mengisi hasil pengujian dengan angka atau status yang belum diverifikasi.
+
+## 9. Kesimpulan
+
+Aplikasi Manajemen Buku Pribadi menerapkan konsep dasar React untuk membangun aplikasi yang memiliki beberapa komponen, pengelolaan state, navigasi halaman, penyimpanan data lokal, dan pengujian komponen.
+
+Dengan pemisahan komponen, hooks, dan context, kode aplikasi menjadi lebih terstruktur serta lebih mudah dipahami dan dikembangkan.
