@@ -144,12 +144,6 @@ Tambahkan screenshot aplikasi yang sudah dijalankan pada bagian ini.
 
 Halaman ini menampilkan daftar buku, informasi jumlah buku, fitur pencarian, filter status, serta tombol untuk menambah, mengedit, dan menghapus buku.
 
-### Halaman Statistik
-
-![Screenshot halaman statistik](docs/screenshots/halaman-statistik.png)
-
-Halaman statistik menampilkan ringkasan koleksi, jumlah penulis berbeda, distribusi status buku, dan daftar buku yang terakhir ditambahkan.
-
 ## 7. Penjelasan Konsep React yang Digunakan
 
 ### a. Functional Components
