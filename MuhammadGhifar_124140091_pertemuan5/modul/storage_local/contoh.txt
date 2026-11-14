@@ -1,0 +1,1 @@
+Contoh isi file dari praktikum Python OOP.
